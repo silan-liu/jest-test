@@ -17,7 +17,12 @@ it('gift', () => {
 });
 
 it('moduleMapper', () => {
-  // Gift.sendGift 还是上面的 mock 实现
+  const g = jest.createMockFromModule('../gift');
+
+  g.sendGift = jest.fn().mockImplementation(() => "wa")
+
+  moduleMapper.Gift = g
+
   const result = moduleMapper.Gift.sendGift()
-  expect(result).toEqual("22")
+  expect(result).toEqual("wa")
 });
