@@ -1,4 +1,4 @@
-function sendGift() {
+export function sendGift() {
   return "ok"
 }
 

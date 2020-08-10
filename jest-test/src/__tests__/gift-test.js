@@ -1,4 +1,4 @@
-import { Gift } from '../gift';
+import { Gift, sendGift } from '../gift';
 import { moduleMapper } from "../module-mapper"
 
 jest.mock("../gift.js")
@@ -12,8 +12,20 @@ it('gift', () => {
   // 或者
   Gift.sendGift.mockImplementation(() => "22")
 
-  const result = Gift.sendGift()
+  let result = Gift.sendGift()
   expect(result).toEqual("22")
+
+  result = moduleMapper.Gift.sendGift()
+  expect(result).toEqual("22")
+});
+
+it('mock sendGift', () => {
+  console.log("sendGift:", sendGift)
+
+  sendGift.mockImplementation(() => "33")
+
+  let result = Gift.sendGift()
+  expect(result).toEqual("33")
 });
 
 it('moduleMapper', () => {
@@ -24,5 +36,5 @@ it('moduleMapper', () => {
   moduleMapper.Gift = g
 
   const result = moduleMapper.Gift.sendGift("e")
-  expect(result).toEqual("wa")
+  expect(result).toEqual("ewa")
 });
