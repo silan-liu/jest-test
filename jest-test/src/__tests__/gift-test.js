@@ -19,10 +19,10 @@ it('gift', () => {
 it('moduleMapper', () => {
   const g = jest.createMockFromModule('../gift');
 
-  g.sendGift = jest.fn().mockImplementation(() => "wa")
+  g.sendGift = jest.fn((a) => a + "wa")
 
   moduleMapper.Gift = g
 
-  const result = moduleMapper.Gift.sendGift()
+  const result = moduleMapper.Gift.sendGift("e")
   expect(result).toEqual("wa")
 });
